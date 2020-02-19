@@ -5,6 +5,9 @@ using UnityEngine;
 public class TouchScript : MonoBehaviour
 {
     #region Variable
+
+    private GameObject[] Object;
+
     private Touch touch;
     private Vector3 TouchPos;
     private Vector3 PointA;
@@ -17,7 +20,13 @@ public class TouchScript : MonoBehaviour
 
     private void Start()
     {
+        Object = new GameObject[10];
+        for (int i = 0; i <= 9; i++)
+        {
+            Object[i] = GameObject.Find(i.ToString());
+        }
         LineRenderer = GetComponent<LineRenderer>();
+        //LineRenderer.SetPosition(0)
     }
 
     private void Update()
