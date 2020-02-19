@@ -14,16 +14,19 @@ public class Multiplication : MonoBehaviour
     public static int CurrentJump;
     public static bool UpdateMul;
     public static bool BaseChange;
+    public static Transform DrawLineB;
+
+    private DrawLine drawLine;
 
     #endregion
 
     #region System Methods
     private void Start()
     {
+        drawLine = FindObjectOfType<DrawLine>();
         BaseJump.text = 0.ToString();
         NoOfJump.text = 0.ToString();
         Total.text = 0.ToString();
-        Debug.Log(StoredTotal);
     }//start
 
     private void Update()
@@ -36,6 +39,7 @@ public class Multiplication : MonoBehaviour
                 NoOfJump.text = ButtonTest.JumpCount.ToString();
                 Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
                 UpdateMul = false;
+                DrawLine.Drawing = true;
             }
 
             else if (BaseChange)

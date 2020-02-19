@@ -34,6 +34,7 @@ public class ButtonTest : MonoBehaviour
         {
             JumpCount++;
             Debug.Log("Correct");
+            Multiplication.DrawLineB = transform.GetChild(1);
             Multiplication.UpdateMul = true;
             Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
         }
