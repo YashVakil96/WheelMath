@@ -60,10 +60,11 @@ public class DrawLine : MonoBehaviour
 
             AT = x * Vector3.Normalize(B - A) + A;
             LineRenderer.SetPosition(1, AT);
-            if(AT.Equals(B))
-            {
-                Drawing = false;
-            }
+        }
+        else
+        {
+            Drawing = false;
+            Debug.Log("Here");
         }
     }//Animate line
 
