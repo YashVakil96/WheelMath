@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ResetScript : MonoBehaviour
 {
     #region Variables
+    public TMP_Text PatternText;
     #endregion
 
     #region System Methods
@@ -15,8 +17,8 @@ public class ResetScript : MonoBehaviour
 
     public void Reset()
     {
+        PatternText.text = "pattern";
         SceneManager.LoadScene(0);
-
     }
     #endregion
 

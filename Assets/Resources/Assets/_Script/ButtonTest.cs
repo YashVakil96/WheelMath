@@ -6,6 +6,7 @@ public class ButtonTest : MonoBehaviour
 {
     #region Variables
     public static int JumpCount;
+    public static bool start;
     private int TempUnitTotal;
     #endregion
 
@@ -16,34 +17,37 @@ public class ButtonTest : MonoBehaviour
 
     public void TestButton()
     {
+        if(start)
+        {
+            int PressedButton = int.Parse(this.name);
+
+            if (Multiplication.StoredTotal >= 10)
+            {
+                TempUnitTotal = Multiplication.StoredTotal % 10;
+                Debug.Log(TempUnitTotal);
+            }
+            else
+            {
+
+                TempUnitTotal = Multiplication.StoredTotal;
+            }
+            if (PressedButton == TempUnitTotal)
+            {
+                JumpCount++;
+                Debug.Log("Correct");
+                Multiplication.DrawLineB = transform.GetChild(1);
+                Debug.Log("DrawLineB From Button Test: " + Multiplication.DrawLineB.parent.name);
+                Multiplication.UpdateMul = true;
+                Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
+
+            }
+            else
+            {
+                Debug.Log("incorrect");
+                //Flash the Correct no
+            }
+        }//if start
         
-        int PressedButton= int.Parse(this.name);
-
-        if(Multiplication.StoredTotal>=10)
-        {
-            TempUnitTotal = Multiplication.StoredTotal % 10;
-            Debug.Log(TempUnitTotal);
-        }
-        else
-        {
-
-            TempUnitTotal = Multiplication.StoredTotal;
-        }
-        if(PressedButton==TempUnitTotal)
-        {
-            JumpCount++;
-            Debug.Log("Correct");
-            Multiplication.DrawLineB = transform.GetChild(1);
-            Debug.Log("DrawLineB From Button Test: "+Multiplication.DrawLineB.parent.name);
-            Multiplication.UpdateMul = true;
-            Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
-
-        }
-        else
-        {
-            Debug.Log("incorrect");
-            //Flash the Correct no
-        }
     }//Test Button
 
     #endregion

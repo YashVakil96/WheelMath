@@ -77,6 +77,7 @@ public class NewLine : MonoBehaviour
 
             NewAT = x * Vector3.Normalize(B - A) + A;
             line.SetPosition(EndLinePoint, NewAT);
+            ButtonTest.start = false;
         }
         else
         {
@@ -97,6 +98,7 @@ public class NewLine : MonoBehaviour
 
                 TempUnitTotal = Multiplication.StoredTotal;
             }
+            ButtonTest.start = true;
         }
     }//Animate line
     #endregion

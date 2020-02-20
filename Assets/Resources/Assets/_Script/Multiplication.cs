@@ -17,14 +17,11 @@ public class Multiplication : MonoBehaviour
     public static Transform DrawLineA;
     public static Transform DrawLineB;
 
-    private DrawLine drawLine;
-
     #endregion
 
     #region System Methods
     private void Start()
     {
-        drawLine = FindObjectOfType<DrawLine>();
         BaseJump.text = 0.ToString();
         NoOfJump.text = 0.ToString();
         Total.text = 0.ToString();
@@ -40,7 +37,6 @@ public class Multiplication : MonoBehaviour
                 NoOfJump.text = ButtonTest.JumpCount.ToString();
                 Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
                 UpdateMul = false;
-                DrawLine.Drawing = true;
                 NewLine.NewDrawing = true;
             }
 

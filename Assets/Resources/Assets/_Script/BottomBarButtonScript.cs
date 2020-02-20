@@ -20,6 +20,7 @@ public class BottomBarButtonScript : MonoBehaviour
 
     public void GetJumpNumber()
     {
+        ButtonTest.start = true;
         line = GameObject.Find("LineController").GetComponent<LineRenderer>();
         int no =int.Parse(this.name);
         CurrentJump = no;
