@@ -17,7 +17,6 @@ public class ButtonTest : MonoBehaviour
     public void TestButton()
     {
         
-        Debug.Log("Jump Count: "+JumpCount);
         int PressedButton= int.Parse(this.name);
 
         if(Multiplication.StoredTotal>=10)
@@ -35,8 +34,10 @@ public class ButtonTest : MonoBehaviour
             JumpCount++;
             Debug.Log("Correct");
             Multiplication.DrawLineB = transform.GetChild(1);
+            Debug.Log("DrawLineB From Button Test: "+Multiplication.DrawLineB.parent.name);
             Multiplication.UpdateMul = true;
             Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
+
         }
         else
         {

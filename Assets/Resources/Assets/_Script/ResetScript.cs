@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResetScript : MonoBehaviour
 {
@@ -14,10 +15,7 @@ public class ResetScript : MonoBehaviour
 
     public void Reset()
     {
-        BottomBarButtonScript.CurrentJump = 0;
-        ButtonTest.JumpCount = 0;
-        Multiplication.StoredTotal = 0;
-        Multiplication.CurrentJump = 0;
+        SceneManager.LoadScene(0);
 
     }
     #endregion

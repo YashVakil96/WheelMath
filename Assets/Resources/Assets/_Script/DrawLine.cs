@@ -7,17 +7,17 @@ public class DrawLine : MonoBehaviour
     #region Variable
 
     public static bool Drawing;
-
-    public int LineDrawSpeed=5;
     public static Transform PointA;
     public static Transform PointB;
     public static Vector3 AT;
+    public static float Distance;//Distance between 2 points
 
+    public int LineDrawSpeed=5;
 
     private float Counter;//Line Draw Counter
-    public static float Distance;//Distance between 2 points
     private GameObject[] Object;
     private LineRenderer LineRenderer;
+    private Vector3[] Positions;
     #endregion
 
 
@@ -25,12 +25,16 @@ public class DrawLine : MonoBehaviour
 
     private void Start()
     {
+        
         Object = new GameObject[10];
+        Positions = new Vector3[Object.Length];
         for (int i = 0; i <= 9; i++)
         {
             Object[i] = GameObject.Find(i.ToString());
+            Positions[i] = Object[i].transform.GetChild(1).transform.position;
         }
         LineRenderer = GetComponent<LineRenderer>();
+        //LineRenderer.positionCount = 10;
         PointA = GameObject.Find("0").transform.GetChild(1).transform;
         //LineRenderer.SetPosition(0)
     }
@@ -50,6 +54,8 @@ public class DrawLine : MonoBehaviour
     #region User Define Methods
     public void AnimateLine(Transform PointA, Transform PointB)
     {
+        Debug.Log(PointA.name);
+        Debug.Log(PointB.name);
         LineRenderer.SetPosition(0, PointA.position);
         if (Counter < Distance)
         {
@@ -71,6 +77,7 @@ public class DrawLine : MonoBehaviour
     public static void CalculateDistance(Transform PointA, Transform PointB)
     {
         Distance = Vector3.Distance(PointA.position, PointB.position);
+        Debug.Log(Distance);
     }
     #endregion
 }//class

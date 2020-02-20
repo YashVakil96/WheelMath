@@ -23,7 +23,6 @@ public class BottomBarButtonScript : MonoBehaviour
         line = GameObject.Find("LineController").GetComponent<LineRenderer>();
         int no =int.Parse(this.name);
         CurrentJump = no;
-        Debug.Log("Current Jump: " + CurrentJump);
         Multiplication.CurrentJump = CurrentJump;
         Multiplication.StoredTotal = CurrentJump * 1;
         ButtonTest.JumpCount = 0;
@@ -31,11 +30,12 @@ public class BottomBarButtonScript : MonoBehaviour
 
         A = GameObject.Find("0");
         B = GameObject.Find(this.name);
-
-        DrawLine.CalculateDistance(A.transform.GetChild(1),B.transform.GetChild(1));
-        line.SetPosition(0, Vector3.zero);
-        line.SetPosition(1, Vector3.zero);
-        DrawLine.AT = Vector3.zero;
+        NewLine.PointA = A.transform.GetChild(1).transform;
+        line.positionCount = 2;
+        line.SetPosition(0, A.transform.GetChild(1).transform.position);
+        line.SetPosition(1, A.transform.GetChild(1).transform.position);
+        //DrawLine.CalculateDistance(A.transform.GetChild(1),B.transform.GetChild(1));//OldScript
+        NewLine.NewCheckDistance(A.transform.GetChild(1).transform,B.transform.GetChild(1).transform);  // New Script
     }//GetJumpNumber
 
     

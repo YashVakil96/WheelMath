@@ -14,6 +14,7 @@ public class Multiplication : MonoBehaviour
     public static int CurrentJump;
     public static bool UpdateMul;
     public static bool BaseChange;
+    public static Transform DrawLineA;
     public static Transform DrawLineB;
 
     private DrawLine drawLine;
@@ -40,6 +41,7 @@ public class Multiplication : MonoBehaviour
                 Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
                 UpdateMul = false;
                 DrawLine.Drawing = true;
+                NewLine.NewDrawing = true;
             }
 
             else if (BaseChange)
