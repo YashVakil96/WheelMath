@@ -53,7 +53,7 @@ public class NewLine : MonoBehaviour
     public static void NewCheckDistance(Transform A, Transform B)
     {
         NewDistance = Vector3.Distance(A.position, B.position);
-        Debug.Log("NewLine Distance: "+NewDistance);
+        //Debug.Log("NewLine Distance: "+NewDistance);
     }//NewCheckDistance
 
     public static void AssignNewPoint(LineRenderer line)
@@ -68,7 +68,7 @@ public class NewLine : MonoBehaviour
         if (Counter < NewDistance)
         {
             //Debug.Log("IS RUNNING");
-            Debug.Log(Counter);
+            //Debug.Log(Counter);
             Counter += 1f /LineDrawSpeed;
             
             float x = Mathf.Lerp(0, NewDistance, Counter);
@@ -101,5 +101,19 @@ public class NewLine : MonoBehaviour
             ButtonTest.start = true;
         }
     }//Animate line
+
+    public void Reset()
+    {
+        line = GetComponent<LineRenderer>();
+        line.startWidth = .1f;
+        line.endWidth = .1f;
+        line.positionCount = PointCount;
+        line.SetPosition(0, GameObject.Find("0").transform.GetChild(1).transform.position);
+        line.SetPosition(1, GameObject.Find("0").transform.GetChild(1).transform.position);
+        ButtonTest.start = true;
+        Debug.Log(ButtonTest.start);
+        StartLinePoint = 0;
+        EndLinePoint = 1;
+    }
     #endregion
 }//class

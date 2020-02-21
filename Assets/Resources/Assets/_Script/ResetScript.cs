@@ -18,7 +18,7 @@ public class ResetScript : MonoBehaviour
     public void Reset()
     {
         PatternText.text = "pattern";
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
     #endregion
 

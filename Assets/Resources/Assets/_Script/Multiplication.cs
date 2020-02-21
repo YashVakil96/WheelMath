@@ -9,6 +9,8 @@ public class Multiplication : MonoBehaviour
     public TMP_Text BaseJump;
     public TMP_Text NoOfJump;
     public TMP_Text Total;
+    public TMP_Text Tens;
+    public TMP_Text Units;
 
     public static int StoredTotal;
     public static int CurrentJump;
@@ -16,7 +18,7 @@ public class Multiplication : MonoBehaviour
     public static bool BaseChange;
     public static Transform DrawLineA;
     public static Transform DrawLineB;
-
+    private int Answer;
     #endregion
 
     #region System Methods
@@ -35,7 +37,10 @@ public class Multiplication : MonoBehaviour
             {
                 BaseJump.text = CurrentJump.ToString();
                 NoOfJump.text = ButtonTest.JumpCount.ToString();
-                Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
+                Answer = CurrentJump * ButtonTest.JumpCount;
+                Total.text = Answer.ToString();
+                Tens.text = (Answer / 10).ToString();
+                Units.text = (Answer % 10).ToString();
                 UpdateMul = false;
                 NewLine.NewDrawing = true;
             }
@@ -44,7 +49,8 @@ public class Multiplication : MonoBehaviour
             {
                 BaseJump.text = CurrentJump.ToString();
                 NoOfJump.text = ButtonTest.JumpCount.ToString();
-                Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
+                Answer = CurrentJump * ButtonTest.JumpCount;
+                Total.text = Answer.ToString();
                 BaseChange = false;
             }
             else
@@ -59,7 +65,8 @@ public class Multiplication : MonoBehaviour
             //Something here
             BaseJump.text = CurrentJump.ToString();
             NoOfJump.text = ButtonTest.JumpCount.ToString();
-            Total.text = (CurrentJump * ButtonTest.JumpCount).ToString();
+            Answer = CurrentJump * ButtonTest.JumpCount;
+            Total.text = Answer.ToString();
         }//If Base is zero
 
     }//Update
@@ -75,6 +82,11 @@ public class Multiplication : MonoBehaviour
         return Total;
     }//Check Multiplication
 
-
+    public void Reset()
+    {
+        BaseJump.text = 0.ToString();
+        NoOfJump.text = 0.ToString();
+        Total.text = 0.ToString();
+    }
     #endregion
 }//Class

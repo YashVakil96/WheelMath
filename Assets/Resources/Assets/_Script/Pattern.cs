@@ -34,7 +34,6 @@ public class Pattern : MonoBehaviour
                     PatternText.text = "SuperStar";
                 }
                 Debug.Log("Pattern is Over");
-                ButtonTest.start = false;
             }
         }//1 3 7 9 
 
@@ -54,7 +53,6 @@ public class Pattern : MonoBehaviour
 
                 }
                 Debug.Log("Pattern is Over");
-                ButtonTest.start = false;
             }
         }//2 4 6 8 
         else if(CurrentJump == 5)
@@ -62,7 +60,6 @@ public class Pattern : MonoBehaviour
             if (Count == 2)
             {
                 Debug.Log("Pattern is Over");
-                ButtonTest.start = false;
             }
         }//5
         else
