@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 3513408687730032867}
   - component: {fileID: 3513408687730032866}
   - component: {fileID: 114356306186212550}
-  - component: {fileID: 95903837576797320}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: BottomBarButton
   m_TagString: BottomBarButton
   m_Icon: {fileID: 0}
@@ -28,9 +27,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3513408687730032868}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1.6400908}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1.6400908}
   m_Children:
   - {fileID: 3513408688621050479}
   m_Father: {fileID: 0}
@@ -62,12 +61,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.32075468, b: 0, a: 1}
+  m_Color: {r: 0.38679248, g: 0.38679248, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3222a4eed6a57407f81c664c51a99ffe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f83936d25c6b2452c84f1901fe43f764, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -96,7 +95,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5254902}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -139,25 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e478b5746804867ab676209abafc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &95903837576797320
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513408687730032868}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8b18226f92f624213aa1cc8e865b24d6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  BaseText: {fileID: 0}
+  ConfirmPanel: {fileID: 0}
+  FollowUp: {fileID: 0}
+  FollowDown: {fileID: 0}
 --- !u!1 &3513408688621050478
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +153,7 @@ GameObject:
   - component: {fileID: 3513408688621050479}
   - component: {fileID: 3513408688621050477}
   - component: {fileID: 3513408688621050476}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

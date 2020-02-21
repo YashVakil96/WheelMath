@@ -33,7 +33,7 @@ public class Pattern : MonoBehaviour
                     Debug.Log("SuperStar");
                     PatternText.text = "SuperStar";
                 }
-                Debug.Log("Pattern is Over");
+                //Debug.Log("Pattern is Over");
             }
         }//1 3 7 9 
 
@@ -52,24 +52,28 @@ public class Pattern : MonoBehaviour
                     PatternText.text = "Star";
 
                 }
-                Debug.Log("Pattern is Over");
+                //Debug.Log("Pattern is Over");
             }
         }//2 4 6 8 
         else if(CurrentJump == 5)
         {
             if (Count == 2)
             {
-                Debug.Log("Pattern is Over");
+                //Debug.Log("Pattern is Over");
             }
         }//5
         else
         {
-            Debug.Log("nothing selected");
+            //Debug.Log("nothing selected");
         }//nothing selected
 
     }//update
     #endregion
 
     #region User Define Methods
+    void ClosePattern()
+    {
+        ButtonTest.start = false;
+    }
     #endregion
 }//class

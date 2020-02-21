@@ -7,6 +7,7 @@ public class ButtonTest : MonoBehaviour
     #region Variables
     public static int JumpCount;
     public static bool start;
+    public static bool PatternIsRunning;
     private int TempUnitTotal;
     #endregion
 
@@ -34,6 +35,7 @@ public class ButtonTest : MonoBehaviour
             }
             if (PressedButton == TempUnitTotal)
             {
+                PatternIsRunning = true;
                 Debug.Log("here");
                 JumpCount++;
                 Debug.Log("Correct");
