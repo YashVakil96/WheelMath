@@ -21,6 +21,7 @@ public class BottomBarButtonScript : MonoBehaviour
     public GameObject Star;
     public GameObject SuperStar;
     public GameObject Pentagon;
+    public GameObject YOYO;
 
     private bool Up;
     private bool Down;
@@ -212,7 +213,9 @@ public class BottomBarButtonScript : MonoBehaviour
         Star.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         SuperStar.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         Pentagon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-
+        YOYO.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        Multiplication.TempTens = 0;
+        Multiplication.Red = false;
     }//Confirm
 
     #endregion

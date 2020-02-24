@@ -58,12 +58,11 @@ public class SingleLine : MonoBehaviour
             {
                 if (B.parent.name == "0")
                 {
-                    AnimateLine(A.GetChild(2).position, B.GetChild(2).position, line);
-
+                    AnimateLine(A.position, B.position, line);
                 }
                 else
                 {
-                    AnimateLine(A.GetChild(3).position, B.GetChild(3).position, line);
+                    AnimateLine(A.position, B.position, line);
                 }
 
             }
@@ -74,12 +73,8 @@ public class SingleLine : MonoBehaviour
         }
         else
         {
-
+            //ELSE
         }
-        //animate new line
-
-        //new line in BLUE
-        //if reaches 0 or goes beyond that then Color RED
     }
     #endregion
 
@@ -87,9 +82,23 @@ public class SingleLine : MonoBehaviour
     void UpdateLinePoint(int PosB)
     {
         //allocating point a and b
-        //point b = when multiplication calculation is done this point is found
+        
         A = B;
-        B = GameObject.Find(PosB.ToString()).transform.GetChild(1).transform;
+        if(BottomBarButtonScript.no==5)
+        {
+            if(B.parent.name=="0")
+            {
+                B = GameObject.Find(PosB.ToString()).transform.GetChild(3).transform;
+            }
+            else
+            {
+                B = GameObject.Find(PosB.ToString()).transform.GetChild(2).transform;
+            }
+        }
+        else
+        {
+            B = GameObject.Find(PosB.ToString()).transform.GetChild(1).transform;
+        }
         NewSingleLine(A);
     }//UpdateLinePoint
 
@@ -156,19 +165,13 @@ public class SingleLine : MonoBehaviour
         line.material = mat;
         if(BottomBarButtonScript.no==5)
         {
-            //Pattern of 5
-            //line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
-            //line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
-
             if(B.parent.name=="0")
             {
-                Debug.Log(B.parent.name);
                 line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(3).transform.position);
                 line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(3).transform.position);
             }
             else
             {
-                Debug.Log(B.parent.name);
                 line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
                 line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
             }

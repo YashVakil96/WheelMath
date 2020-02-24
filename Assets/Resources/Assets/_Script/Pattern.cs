@@ -15,6 +15,8 @@ public class Pattern : MonoBehaviour
     public GameObject Star;
     public GameObject SuperStar;
     public GameObject Pentagon;
+    public GameObject YOYO;
+    public ParticleSystem particle;
 
     private int CurrentJump;
     public float alpha=1;
@@ -27,7 +29,7 @@ public class Pattern : MonoBehaviour
         CurrentJump = BottomBarButtonScript.CurrentJump;
         if(!PatternIsOver)
         {
-            if (CurrentJump == 1 || CurrentJump == 3 || CurrentJump == 7 || CurrentJump == 9)
+            if (CurrentJump == 1 || CurrentJump == 3 || CurrentJump == 5 || CurrentJump == 7 || CurrentJump == 9)
             {
                 if (Count == 10)
                 {
@@ -48,8 +50,17 @@ public class Pattern : MonoBehaviour
                         ClosePattern();
                         ButtonTest.start = false;
                     }
+                    else if (CurrentJump == 5)
+                    {
+                        Debug.Log("YO-YO");
+                        YOYO.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
+                        PatternIsOver = true;
+                        Count = 0;
+                        ClosePattern();
+                        ButtonTest.start = false;
+                    }
                 }
-            }//1 3 7 9 
+            }//1 3 5 7 9 
 
             else if (CurrentJump == 2 || CurrentJump == 4 || CurrentJump == 6 || CurrentJump == 8)
             {
@@ -74,14 +85,6 @@ public class Pattern : MonoBehaviour
                 }
             }//2 4 6 8
 
-            else if (CurrentJump == 5)
-            {
-                //if (Count == 2)
-                //{
-                //    //Debug.Log("Pattern is Over");
-                //}
-            }//5
-
             else
             {
                 //Debug.Log("nothing selected");
@@ -101,6 +104,7 @@ public class Pattern : MonoBehaviour
 
     void ClosePattern()
     {
+        particle.Play();
         ButtonTest.start = false;
         AgainButton.SetActive(true);
         PatternIsOver = false;

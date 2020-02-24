@@ -9,6 +9,7 @@ public class AroundAgain : MonoBehaviour
     public GameObject Star;
     public GameObject SuperStar;
     public GameObject Pentagon;
+    public GameObject YOYO;
 
     private SingleLine line;
     #endregion
@@ -27,6 +28,7 @@ public class AroundAgain : MonoBehaviour
         Star.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         SuperStar.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         Pentagon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        YOYO.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         foreach (Transform child in GameObject.Find("SingleLineParent").transform)
         {
             GameObject.Destroy(child.gameObject);
