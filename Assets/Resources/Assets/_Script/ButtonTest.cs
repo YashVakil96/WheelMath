@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ButtonTest : MonoBehaviour
 {
     #region Variables
+
     public static int JumpCount;
     public static bool start;
     public static bool PatternIsRunning;
+
+    public GameObject GreenText;
+    public GameObject BottomText;
+
     private int TempUnitTotal;
+
     #endregion
 
     #region System Methods
@@ -20,13 +27,12 @@ public class ButtonTest : MonoBehaviour
     {
         if(start)
         {
-            Debug.Log("Here");
+            
             int PressedButton = int.Parse(this.name);
 
             if (Multiplication.StoredTotal >= 10)
             {
                 TempUnitTotal = Multiplication.StoredTotal % 10;
-                Debug.Log(TempUnitTotal);
             }
             else
             {
@@ -35,15 +41,14 @@ public class ButtonTest : MonoBehaviour
             }
             if (PressedButton == TempUnitTotal)
             {
+                GreenText.GetComponent<TMP_Text>().text = "";
+                BottomText.GetComponent<TMP_Text>().text = "";
                 PatternIsRunning = true;
-                Debug.Log("here");
                 JumpCount++;
-                Debug.Log("Correct");
+                Pattern.Count++;
                 Multiplication.DrawLineB = transform.GetChild(1);
-                Debug.Log("DrawLineB From Button Test: " + Multiplication.DrawLineB.parent.name);
                 Multiplication.UpdateMul = true;
                 Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
-
             }
             else
             {
@@ -51,7 +56,6 @@ public class ButtonTest : MonoBehaviour
                 //Flash the Correct no
             }
         }//if start
-        
     }//Test Button
 
     #endregion

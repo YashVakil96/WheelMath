@@ -6,18 +6,21 @@ public class Multiplication : MonoBehaviour
 {
     #region Variable
 
+    public static int StoredTotal;
+    public static int CurrentJump;
+    public static bool UpdateMul;
+    public static bool BaseChange;
+    public static bool Red;
+    public static Transform DrawLineA;
+    public static Transform DrawLineB;
+    public static int TempTens;
+
     public TMP_Text BaseJump;
     public TMP_Text NoOfJump;
     public TMP_Text Total;
     public TMP_Text Tens;
     public TMP_Text Units;
 
-    public static int StoredTotal;
-    public static int CurrentJump;
-    public static bool UpdateMul;
-    public static bool BaseChange;
-    public static Transform DrawLineA;
-    public static Transform DrawLineB;
     private int Answer;
     #endregion
 
@@ -42,7 +45,9 @@ public class Multiplication : MonoBehaviour
                 Tens.text = (Answer / 10).ToString();
                 Units.text = (Answer % 10).ToString();
                 UpdateMul = false;
-                NewLine.NewDrawing = true;
+                //NewLine.NewDrawing = true;
+                SingleLine.NewDrawing = true;
+
             }
 
             else if (BaseChange)
@@ -79,6 +84,18 @@ public class Multiplication : MonoBehaviour
         int BaseNo,Total;
         BaseNo = Base;
         Total = BaseNo * i;
+        if (TempTens== Total/10)
+        {
+            //Blue line color
+            Red = false;
+            Debug.Log(Red);
+        }
+        else
+        {
+            //redline color
+            TempTens = Total / 10;
+            Red = true;
+        }
         return Total;
     }//Check Multiplication
 
