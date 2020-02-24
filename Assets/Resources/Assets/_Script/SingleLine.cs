@@ -17,7 +17,7 @@ public class SingleLine : MonoBehaviour
     private float Counter;
     private Vector3 NewAT;
     
-    LineRenderer line;
+    public LineRenderer line;
     #endregion
 
     #region System Methods
@@ -25,14 +25,26 @@ public class SingleLine : MonoBehaviour
     private void Start()
     {
         GameObject NewSingleLine = new GameObject();
+        NewSingleLine.name = "LineObject";
+        NewSingleLine.transform.SetParent(this.gameObject.transform);
         line = NewSingleLine.AddComponent<LineRenderer>();
         line.startWidth = .1f;
         line.endWidth = .1f;
-        line.startColor = Color.blue;
-        line.endColor = Color.blue;
+        line.startColor = Color.green;
+        line.endColor = Color.green;
         line.material = mat;
-        line.SetPosition(0, GameObject.Find("0").transform.GetChild(1).transform.position);
-        line.SetPosition(1, GameObject.Find("0").transform.GetChild(1).transform.position);
+        if(BottomBarButtonScript.no==5)
+        {
+            line.SetPosition(0, GameObject.Find("0").transform.GetChild(3).transform.position);
+            line.SetPosition(1, GameObject.Find("0").transform.GetChild(3).transform.position);
+        }
+        else
+        {
+            line.SetPosition(0, GameObject.Find("0").transform.GetChild(1).transform.position);
+            line.SetPosition(1, GameObject.Find("0").transform.GetChild(1).transform.position);
+        }
+        
+        line.sortingOrder = 10;
         Counter = 0;
     }//Start
 
@@ -40,9 +52,25 @@ public class SingleLine : MonoBehaviour
     {
         //set the points
         //animate new line
-        if(NewDrawing)
+        if (NewDrawing)
         {
-            AnimateLine(A.position, B.position,line);
+            if(BottomBarButtonScript.no==5)
+            {
+                if (B.parent.name == "0")
+                {
+                    AnimateLine(A.GetChild(2).position, B.GetChild(2).position, line);
+
+                }
+                else
+                {
+                    AnimateLine(A.GetChild(3).position, B.GetChild(3).position, line);
+                }
+
+            }
+            else
+            {
+                AnimateLine(A.position, B.position, line);
+            }
         }
         else
         {
@@ -110,6 +138,8 @@ public class SingleLine : MonoBehaviour
     void NewSingleLine(Transform B)
     {
         GameObject NewSingleLine = new GameObject();
+        NewSingleLine.name = "LineObject";
+        NewSingleLine.transform.SetParent(GameObject.Find("SingleLineParent").transform);
         line = NewSingleLine.AddComponent<LineRenderer>();
         line.startWidth = .1f;
         line.endWidth = .1f;
@@ -120,13 +150,53 @@ public class SingleLine : MonoBehaviour
         }
         else
         {
-           line.startColor = Color.blue;
-           line.endColor = Color.blue;
+           line.startColor = Color.green;
+           line.endColor = Color.green;
         }
         line.material = mat;
-        line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(1).transform.position);
-        line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(1).transform.position);
-    }
+        if(BottomBarButtonScript.no==5)
+        {
+            //Pattern of 5
+            //line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
+            //line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
+
+            if(B.parent.name=="0")
+            {
+                Debug.Log(B.parent.name);
+                line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(3).transform.position);
+                line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(3).transform.position);
+            }
+            else
+            {
+                Debug.Log(B.parent.name);
+                line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
+                line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(2).transform.position);
+            }
+        }
+        else
+        {
+            line.SetPosition(0, GameObject.Find(B.parent.name).transform.GetChild(1).transform.position);
+            line.SetPosition(1, GameObject.Find(B.parent.name).transform.GetChild(1).transform.position);
+        }
+        line.sortingOrder = 10;
+    }//NewSingleLine
+
+    public void Reset()
+    {
+        GameObject NewSingleLine = new GameObject();
+        NewSingleLine.name = "LineObject";
+        NewSingleLine.transform.SetParent(this.gameObject.transform);
+        line = NewSingleLine.AddComponent<LineRenderer>();
+        line.startWidth = .1f;
+        line.endWidth = .1f;
+        line.startColor = Color.green;
+        line.endColor = Color.green;
+        line.material = mat;
+        line.SetPosition(0, GameObject.Find("0").transform.GetChild(1).transform.position);
+        line.SetPosition(1, GameObject.Find("0").transform.GetChild(1).transform.position);
+        line.sortingOrder = 10;
+        Counter = 0;
+    }//Reset
     #endregion
 
 }//class

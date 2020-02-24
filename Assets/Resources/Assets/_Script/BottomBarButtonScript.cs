@@ -18,13 +18,21 @@ public class BottomBarButtonScript : MonoBehaviour
     public GameObject ConfirmPanel;
     public Transform FollowUp;
     public Transform FollowDown;
+    public GameObject Star;
+    public GameObject SuperStar;
+    public GameObject Pentagon;
 
     private bool Up;
     private bool Down;
-
+    private SingleLine line;
     #endregion
 
     #region System Methods
+
+    private void Start()
+    {
+        line = FindObjectOfType<SingleLine>();
+    }
 
     private void Update()
     {
@@ -36,7 +44,7 @@ public class BottomBarButtonScript : MonoBehaviour
         {
             MoveDown();
         }
-    }
+    }//Update
 
     #endregion
 
@@ -60,17 +68,29 @@ public class BottomBarButtonScript : MonoBehaviour
             ButtonTest.JumpCount = 0;
             Multiplication.BaseChange = true;
             GreenText.GetComponent<TMP_Text>().text = "Tap " + no + " to start";
-            SingleLine.A = GameObject.Find("0").transform.GetChild(1).transform;
-            SingleLine.B = GameObject.Find(Multiplication.StoredTotal.ToString()).transform.GetChild(1).transform;
+            if(no==5)
+            {
+                SingleLine.A = GameObject.Find("0").transform.GetChild(3).transform;
+                line.line.SetPosition(0, SingleLine.A.position);
+                line.line.SetPosition(1, SingleLine.A.position);
+                SingleLine.B = GameObject.Find(Multiplication.StoredTotal.ToString()).transform.GetChild(3).transform;
+            }
+            else
+            {
+                SingleLine.A = GameObject.Find("0").transform.GetChild(1).transform;
+                SingleLine.B = GameObject.Find(Multiplication.StoredTotal.ToString()).transform.GetChild(1).transform;
+            }
+            
             SingleLine.NewCheckDistance(SingleLine.A, SingleLine.B);
         }//if First Check
 
         else
         {
             Up = true;
+            BottomText.GetComponent<TMP_Text>().text = "";
+
             no = int.Parse(this.name);
         }
-        
     }//GetJumpNumber
 
     void BaseNumber(int no)
@@ -127,6 +147,7 @@ public class BottomBarButtonScript : MonoBehaviour
                 BottomText.GetComponent<TMP_Text>().text = "Start by touching 9, then 8 Nines Create a DECAGON!";
                 break;
         }//Switch
+
     }//BaseNumber
 
 
@@ -140,6 +161,7 @@ public class BottomBarButtonScript : MonoBehaviour
             Down = false;
         }
         //Translate Up
+
     }//MoveUp
 
     public void MoveDown()
@@ -152,24 +174,46 @@ public class BottomBarButtonScript : MonoBehaviour
             Up = false;
         }
         //Translate Down
+
     }//MoveDown
 
     public void Confirm()
     {
 
         MoveDown();
-        Debug.Log(ButtonTest.start);
-        ButtonTest.start = true;
-        Debug.Log(ButtonTest.start);
-        BaseSelected = true;
         BaseNumber(no);
+        foreach (Transform child in GameObject.Find("SingleLineParent").transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        line.Reset();
         CurrentJump = no;
         Multiplication.CurrentJump = CurrentJump;
         Multiplication.StoredTotal = CurrentJump * 1;
         ButtonTest.JumpCount = 0;
         Multiplication.BaseChange = true;
         GreenText.GetComponent<TMP_Text>().text = "Tap " + no + " to start";
-    }
+        if (no == 5)
+        {
+            SingleLine.A = GameObject.Find("0").transform.GetChild(3).transform;
+            line.line.SetPosition(0, SingleLine.A.position);
+            line.line.SetPosition(1, SingleLine.A.position);
+            SingleLine.B = GameObject.Find(Multiplication.StoredTotal.ToString()).transform.GetChild(3).transform;
+        }
+        else
+        {
+            SingleLine.A = GameObject.Find("0").transform.GetChild(1).transform;
+            SingleLine.B = GameObject.Find(Multiplication.StoredTotal.ToString()).transform.GetChild(1).transform;
+        }
+
+        SingleLine.NewCheckDistance(SingleLine.A, SingleLine.B);
+        Pattern.PatternIsOver = false;
+        Pattern.Count = 0;
+        Star.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        SuperStar.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        Pentagon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+
+    }//Confirm
 
     #endregion
 }//class

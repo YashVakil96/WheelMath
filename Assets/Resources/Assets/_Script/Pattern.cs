@@ -37,6 +37,7 @@ public class Pattern : MonoBehaviour
                         PatternIsOver = true;
                         Count = 0;
                         ClosePattern();
+
                     }
                     else if (CurrentJump == 3 || CurrentJump == 7)
                     {
@@ -45,6 +46,7 @@ public class Pattern : MonoBehaviour
                         PatternIsOver = true;
                         Count = 0;
                         ClosePattern();
+                        ButtonTest.start = false;
                     }
                 }
             }//1 3 7 9 
@@ -74,10 +76,10 @@ public class Pattern : MonoBehaviour
 
             else if (CurrentJump == 5)
             {
-                if (Count == 2)
-                {
-                    Debug.Log("Pattern is Over");
-                }
+                //if (Count == 2)
+                //{
+                //    //Debug.Log("Pattern is Over");
+                //}
             }//5
 
             else
@@ -89,8 +91,8 @@ public class Pattern : MonoBehaviour
         else
         {
             PatternIsOver = true;
+            ButtonTest.start = false;
         }
-        
     }//update
 
     #endregion

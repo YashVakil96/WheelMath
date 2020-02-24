@@ -11,8 +11,6 @@ public class Multiplication : MonoBehaviour
     public static bool UpdateMul;
     public static bool BaseChange;
     public static bool Red;
-    public static Transform DrawLineA;
-    public static Transform DrawLineB;
     public static int TempTens;
 
     public TMP_Text BaseJump;
@@ -88,7 +86,6 @@ public class Multiplication : MonoBehaviour
         {
             //Blue line color
             Red = false;
-            Debug.Log(Red);
         }
         else
         {

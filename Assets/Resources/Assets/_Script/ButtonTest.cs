@@ -36,7 +36,6 @@ public class ButtonTest : MonoBehaviour
             }
             else
             {
-
                 TempUnitTotal = Multiplication.StoredTotal;
             }
             if (PressedButton == TempUnitTotal)
@@ -46,7 +45,6 @@ public class ButtonTest : MonoBehaviour
                 PatternIsRunning = true;
                 JumpCount++;
                 Pattern.Count++;
-                Multiplication.DrawLineB = transform.GetChild(1);
                 Multiplication.UpdateMul = true;
                 Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
             }
