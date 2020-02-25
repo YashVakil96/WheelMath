@@ -15,10 +15,14 @@ public class ButtonTest : MonoBehaviour
     public GameObject BottomText;
 
     private int TempUnitTotal;
+    private Animator anim;
 
     #endregion
 
     #region System Methods
+    private void Start()
+    {
+    }
     #endregion
 
     #region User Define Methods
@@ -47,11 +51,17 @@ public class ButtonTest : MonoBehaviour
                 Pattern.Count++;
                 Multiplication.UpdateMul = true;
                 Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
+                anim = GameObject.Find(TempUnitTotal.ToString()).GetComponent<Animator>(); ;
+                anim.SetBool("WrongBlink", false);
             }
             else
             {
+                GetComponent<AudioSource>().Play();
+                //Get anim component of corrent number
+                anim = GameObject.Find(TempUnitTotal.ToString()).GetComponent<Animator>(); ;
+                anim.SetBool("WrongBlink",true);
                 Debug.Log("incorrect");
-                //Flash the Correct no
+                //Color Flash the Correct no
             }
         }//if start
     }//Test Button

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class BottomBarButtonScript : MonoBehaviour
 {
     #region Variables
@@ -22,10 +22,21 @@ public class BottomBarButtonScript : MonoBehaviour
     public GameObject SuperStar;
     public GameObject Pentagon;
     public GameObject YOYO;
+    public Color32 OriginalColor;
+    public Color32 SelectedColor;
+    public Color32 TextOriginalColor;
+    public Color32 TextSelectColor;
+    public TMP_Text SelectedNo;
+    public GameObject AgainParent;
 
     private bool Up;
     private bool Down;
     private SingleLine line;
+    private Image image;
+    private Animator anim;
+    private GameObject Border;
+    
+    
     #endregion
 
     #region System Methods
@@ -33,6 +44,10 @@ public class BottomBarButtonScript : MonoBehaviour
     private void Start()
     {
         line = FindObjectOfType<SingleLine>();
+        image = GetComponent<Image>();
+        anim = transform.GetChild(1).GetComponent<Animator>();
+        Border = transform.GetChild(1).gameObject;
+        Border.GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 
     private void Update()
@@ -44,6 +59,22 @@ public class BottomBarButtonScript : MonoBehaviour
         else if(Down)
         {
             MoveDown();
+        }
+        if(no == int.Parse(this.name))
+        {
+            image.color = SelectedColor;
+            SelectedNo.color = TextSelectColor;
+            anim.SetBool("Selected",true);
+            Border.GetComponent<Image>().color =Color.yellow;
+
+        }
+        else
+        {
+            image.color = OriginalColor;
+            SelectedNo.color = TextOriginalColor;
+            anim.SetBool("Selected", false);
+            Border.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
         }
     }//Update
 
@@ -92,6 +123,7 @@ public class BottomBarButtonScript : MonoBehaviour
 
             no = int.Parse(this.name);
         }
+        GetComponent<AudioSource>().Play();
     }//GetJumpNumber
 
     void BaseNumber(int no)
@@ -100,52 +132,52 @@ public class BottomBarButtonScript : MonoBehaviour
         {
             case 1:
                 BaseText.text = "Ones";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 1, then 2 Ones Create a DECAGON!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 1,then 2\nOnes Create a DECAGON!";
                 break;
 
             case 2:
                 BaseText.text = "Twos";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 2, then 4 Twos Create a PENTAGON!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 2,then 4\nTwos Create a PENTAGON!";
                 break;
 
             case 3:
                 BaseText.text = "Threes";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 3, then 6, 3s Create a STARBURST!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 3,then 6,\n3s Create a STARBURST!";
 
                 break;
 
             case 4:
                 BaseText.text = "Fours";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 4, then 8 FOURS Create a STAR!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 4,then 8\nFOURS Create a STAR!";
 
                 break;
 
             case 5:
                 BaseText.text = "Fives";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 5, then 0 Fives Create a Yo-Yo!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 5,then 0 \nFives Create a Yo-Yo!";
                 break;
 
             case 6:
                 BaseText.text = "Sixes";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 6, then 2 Sixes Create a STAR!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 6,then 2 \nSixes Create a STAR!";
 
                 break;
 
             case 7:
                 BaseText.text = "Sevens";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 7, then 4, 7s Create a STARBURST!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 7,then 4, \n7s Create a STARBURST!";
 
                 break;
 
             case 8:
                 BaseText.text = "Eights";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 8, then 6 8s Create a PENTAGON!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 8,then 6 \n8s Create a PENTAGON!";
 
                 break;
 
             case 9:
                 BaseText.text = "Nines";
-                BottomText.GetComponent<TMP_Text>().text = "Start by touching 9, then 8 Nines Create a DECAGON!";
+                BottomText.GetComponent<TMP_Text>().text = "Start by touching 9,then 8 \nNines Create a DECAGON!";
                 break;
         }//Switch
 
@@ -155,7 +187,7 @@ public class BottomBarButtonScript : MonoBehaviour
     void MoveUP()
     {
         ConfirmPanel.transform.position = Vector3.MoveTowards(ConfirmPanel.transform.position, FollowUp.transform.position, 10 * Time.deltaTime);
-
+        ConfirmPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = "Are you sure you want to go to "+BaseText.text+" ?";
         if(ConfirmPanel.transform.position== FollowUp.transform.position)
         {
             Up = false;
@@ -167,6 +199,7 @@ public class BottomBarButtonScript : MonoBehaviour
 
     public void MoveDown()
     {
+        GetComponent<AudioSource>().Play();
         Down = true;
         ConfirmPanel.transform.position = Vector3.MoveTowards(ConfirmPanel.transform.position, FollowDown.transform.position, 10 * Time.deltaTime);
         if (ConfirmPanel.transform.position == FollowDown.transform.position)
@@ -180,7 +213,7 @@ public class BottomBarButtonScript : MonoBehaviour
 
     public void Confirm()
     {
-
+        GetComponent<AudioSource>().Play();
         MoveDown();
         BaseNumber(no);
         foreach (Transform child in GameObject.Find("SingleLineParent").transform)
@@ -216,6 +249,8 @@ public class BottomBarButtonScript : MonoBehaviour
         YOYO.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         Multiplication.TempTens = 0;
         Multiplication.Red = false;
+        AgainParent.SetActive(false);
+        Pattern.PatternCount = 1;
     }//Confirm
 
     #endregion

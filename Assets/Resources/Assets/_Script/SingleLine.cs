@@ -11,13 +11,15 @@ public class SingleLine : MonoBehaviour
     public static bool NewDrawing;
     public static float NewDistance;
 
+    public LineRenderer line;
     public Material mat;
     public float LineDrawSpeed;
 
     private float Counter;
     private Vector3 NewAT;
+    private AudioManager LineAudio;
+    private bool IfPlayed;
     
-    public LineRenderer line;
     #endregion
 
     #region System Methods
@@ -25,6 +27,7 @@ public class SingleLine : MonoBehaviour
     private void Start()
     {
         GameObject NewSingleLine = new GameObject();
+        LineAudio = FindObjectOfType<AudioManager>();
         NewSingleLine.name = "LineObject";
         NewSingleLine.transform.SetParent(this.gameObject.transform);
         line = NewSingleLine.AddComponent<LineRenderer>();
@@ -58,22 +61,41 @@ public class SingleLine : MonoBehaviour
             {
                 if (B.parent.name == "0")
                 {
+                    if(!IfPlayed)
+                    {
+                        LineAudio.PlaySound();
+                        IfPlayed = true;
+
+                    }
                     AnimateLine(A.position, B.position, line);
                 }
                 else
                 {
+                    if (!IfPlayed)
+                    {
+                        LineAudio.PlaySound();
+                        IfPlayed = true;
+
+                    }
                     AnimateLine(A.position, B.position, line);
                 }
 
             }
             else
             {
+                if (!IfPlayed)
+                {
+                    LineAudio.PlaySound();
+                    IfPlayed = true;
+
+                }
                 AnimateLine(A.position, B.position, line);
             }
         }
         else
         {
             //ELSE
+            IfPlayed = false;
         }
     }
     #endregion
@@ -114,7 +136,7 @@ public class SingleLine : MonoBehaviour
 
             NewAT = x * Vector3.Normalize(B - A) + A;
             line.SetPosition(1, NewAT);
-
+            ButtonTest.start = false;
         }
         else
         {
@@ -124,10 +146,12 @@ public class SingleLine : MonoBehaviour
             if (Multiplication.StoredTotal >= 10)
             {
                 TempUnitTotal = Multiplication.StoredTotal % 10;
+                ButtonTest.start = true;
             }
             else
             {
                 TempUnitTotal = Multiplication.StoredTotal;
+                ButtonTest.start = true;
             }
             if (!Pattern.PatternIsOver)
             {
@@ -156,11 +180,13 @@ public class SingleLine : MonoBehaviour
         {
             line.startColor = Color.red;
             line.endColor = Color.red;
+            AudioManager.UpSound = true;
         }
         else
         {
            line.startColor = Color.green;
            line.endColor = Color.green;
+            AudioManager.UpSound = false;
         }
         line.material = mat;
         if(BottomBarButtonScript.no==5)
