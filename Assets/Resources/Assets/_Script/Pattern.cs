@@ -20,9 +20,9 @@ public class Pattern : MonoBehaviour
     public TMP_Text Pattern4;
     public AudioClip[] NumberClips;
     public AudioClip Applause;
+    public float alpha=1;
 
     private int CurrentJump;
-    public float alpha=1;
     private FireworkAudio FA;
     private AudioSource NumberAudio;
     private bool ApplauseNow;
@@ -162,6 +162,7 @@ public class Pattern : MonoBehaviour
             {
                 if (!NumberAudio.isPlaying)
                 {
+                    Invoke("PlayParticle", 1);
                     NumberAudio.clip = Applause;
                     NumberAudio.Play();
                     ApplauseNow = false;
@@ -176,13 +177,10 @@ public class Pattern : MonoBehaviour
 
     void ClosePattern()
     {
-        particle.Play();
-        FA.PlayFire();
         ButtonTest.start = false;
         AgainButton.SetActive(true);
-        PatternIsOver = false;
         Count = 0;
-        if(PatternCount==4)
+        if (PatternCount==4)
         {
             
             Debug.Log("Here");
@@ -232,7 +230,12 @@ public class Pattern : MonoBehaviour
             PatternCount++;
         }
         ApplauseNow = true;
-    }
+    }//close pattern
 
+
+    void PlayParticle()
+    {
+        particle.Play();
+    }
     #endregion
 }//class

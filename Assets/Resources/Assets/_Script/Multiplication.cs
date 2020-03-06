@@ -54,6 +54,8 @@ public class Multiplication : MonoBehaviour
                 NoOfJump.text = ButtonTest.JumpCount.ToString();
                 Answer = CurrentJump * ButtonTest.JumpCount;
                 Total.text = Answer.ToString();
+                Tens.text = (Answer / 10).ToString();
+                Units.text = (Answer % 10).ToString();
                 BaseChange = false;
             }
             else

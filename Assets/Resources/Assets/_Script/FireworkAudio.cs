@@ -5,22 +5,27 @@ using UnityEngine;
 public class FireworkAudio : MonoBehaviour
 {
     #region Variable
-    public ParticleSystem particle;
-    public AudioSource ParticleAudio;
     public AudioClip SingleShot;
-    public float Delay;
-
 
     private bool Played;
+    [SerializeField]
+    private int Count;
     #endregion
 
     #region System Methods
+    private void Update()
+    {
+        if (!this.GetComponent<AudioSource>().isPlaying)
+        {
+            if (this.GetComponent<ParticleSystem>().particleCount > 0)
+            {
+                this.GetComponent<AudioSource>().PlayOneShot(SingleShot);
+            }
+        }
+        Count = this.GetComponent<ParticleSystem>().particleCount;
+    }
     #endregion
 
     #region User Define Methods
-    public void PlayFire()
-    {
-        ParticleAudio.PlayOneShot(SingleShot);
-    }
     #endregion
 }

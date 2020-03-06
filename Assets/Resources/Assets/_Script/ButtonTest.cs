@@ -20,8 +20,12 @@ public class ButtonTest : MonoBehaviour
     #endregion
 
     #region System Methods
-    private void Start()
+    private void Update()
     {
+        if(Pattern.PatternIsOver)
+        {
+            start = false;
+        }
     }
     #endregion
 
@@ -33,34 +37,32 @@ public class ButtonTest : MonoBehaviour
         {
             
             int PressedButton = int.Parse(this.name);
-
             if (Multiplication.StoredTotal >= 10)
             {
-                TempUnitTotal = Multiplication.StoredTotal % 10;
+                TempUnitTotal = int.Parse("0" + Multiplication.StoredTotal % 10);
             }
             else
             {
-                TempUnitTotal = Multiplication.StoredTotal;
+                TempUnitTotal =int.Parse ("0"+Multiplication.StoredTotal);
             }
             if (PressedButton == TempUnitTotal)
             {
-                GreenText.GetComponent<TMP_Text>().text = "";
+                GreenText.GetComponent<TMP_Text>().text = "Go around "+BottomBarButtonScript.CurrentJump+" more and tap";
                 BottomText.GetComponent<TMP_Text>().text = "";
                 PatternIsRunning = true;
                 JumpCount++;
                 Pattern.Count++;
                 Multiplication.UpdateMul = true;
                 Multiplication.StoredTotal = Multiplication.CheckMultiplication(Multiplication.CurrentJump, JumpCount + 1);
-                anim = GameObject.Find(TempUnitTotal.ToString()).GetComponent<Animator>(); ;
+                anim = GameObject.Find("0"+TempUnitTotal).GetComponent<Animator>(); ;
                 anim.SetBool("WrongBlink", false);
             }
             else
             {
-                GetComponent<AudioSource>().Play();
                 //Get anim component of corrent number
-                anim = GameObject.Find(TempUnitTotal.ToString()).GetComponent<Animator>(); ;
+                GetComponent<AudioSource>().Play();
+                anim = GameObject.Find("0" + TempUnitTotal).GetComponent<Animator>(); ;
                 anim.SetBool("WrongBlink",true);
-                Debug.Log("incorrect");
                 //Color Flash the Correct no
             }
         }//if start

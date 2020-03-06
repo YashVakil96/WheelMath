@@ -14,12 +14,15 @@ public class AroundAgain : MonoBehaviour
     public TMP_Text Pattern4;
 
     private SingleLine line;
+    private BottomBarButtonScript Button;
     #endregion
 
     #region System Methods
     private void Start()
     {
         line = FindObjectOfType<SingleLine>();
+        Button = FindObjectOfType<BottomBarButtonScript>();
+        ButtonTest.start = false;
     }
     #endregion
 
@@ -27,6 +30,7 @@ public class AroundAgain : MonoBehaviour
 
     public void AroundAgainClick()
     {
+        Button.MoveDown();
         GetComponent<AudioSource>().Play();
         Star.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         Star.GetComponent<Animator>().SetBool("BlinkStar", false);
@@ -48,6 +52,8 @@ public class AroundAgain : MonoBehaviour
         line.Reset();
         this.gameObject.transform.parent.gameObject.SetActive(false);
         ButtonTest.start = true;
+        Pattern.PatternIsOver = false;
+
     }//AroundAgainClick
     #endregion
 }//class
